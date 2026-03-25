@@ -370,3 +370,77 @@
   .heroFrame { margin: 64px 0 0; border-left: none; border-right: none; }
   .statsBar { margin: 0; }
 }
+
+/* ══════════════════════════════════════════
+   CONTACT DASHBOARD
+   ══════════════════════════════════════════ */
+.contactBar {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 2rem;
+  padding: 1.4rem 2rem;
+  background: #0b1a10;
+  border: 1px solid var(--dark-border);
+  border-top: none;
+}
+
+.contactHeading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: var(--green);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.contactCards {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.contactCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.7rem 1.2rem;
+  border: 1px solid var(--dark-border-box);
+  background: var(--grey-accent);
+  text-decoration: none;
+  transition: border-color 0.18s, background 0.18s;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+}
+
+.contactCard:hover {
+  border-color: var(--green-muted);
+  background: var(--green-glow);
+}
+
+.contactName {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.06em;
+}
+
+.contactPhone {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--green);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 640px) {
+  .contactBar { flex-direction: column; align-items: flex-start; gap: 1rem; margin: 0 1rem; }
+  .contactCards { width: 100%; }
+  .contactCard { flex: 1; }
+}
+
+@media (max-width: 480px) {
+  .contactBar { margin: 0; border-left: none; border-right: none; }
+}

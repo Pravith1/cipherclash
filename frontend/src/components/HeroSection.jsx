@@ -172,10 +172,6 @@ export default function HeroSection() {
 
         {/* Left: content */}
         <div className={styles.content}>
-          <div className={styles.tag}>
-            <span className={styles.dot} />
-            The №1 Cybersecurity Quiz Event at PSG Tech
-          </div>
 
           <h1 className={styles.title}>
             CIPHER<span className={styles.accent}>CLASH</span>

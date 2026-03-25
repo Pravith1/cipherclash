@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import RegistrationForm from './components/RegistrationForm'
+import ContactSection from './components/ContactSection'
 import SuccessPage from './pages/SuccessPage'
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
           <Navbar />
           <HeroSection />
           <RegistrationForm onSuccess={handleSuccess} />
+          <ContactSection />
         </div>
       )}
     </>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import styles from './SuccessPage.module.css'
+import ContactSection from '../components/ContactSection'
 
 export default function SuccessPage({ data, onReset }) {
   const [visible, setVisible] = useState(false)
@@ -17,6 +18,7 @@ export default function SuccessPage({ data, onReset }) {
   }
 
   return (
+    <>
     <div className={`${styles.page} ${visible ? styles.pageVisible : ''}`}>
       <div className={styles.bgGrid} />
       <div className={styles.scanLine} />
@@ -124,5 +126,7 @@ export default function SuccessPage({ data, onReset }) {
         </div>
       </div>
     </div>
+    <ContactSection />
+    </>
   )
 }

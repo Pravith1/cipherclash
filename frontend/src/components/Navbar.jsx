@@ -11,6 +11,7 @@ export default function Navbar() {
       <div className={styles.links}>
         <a href="#about">About</a>
         <a href="#register">Register</a>
+        <a href="#contact">Contact Us</a>
       </div>
 
       <a href="#register" className={styles.cta}>
