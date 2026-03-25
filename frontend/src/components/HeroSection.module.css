@@ -347,8 +347,8 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .heroFrame { padding: 3rem 2rem; margin: 80px 1rem 0; }
-  .fpWrap    { position: relative; right: auto; top: auto; transform: none; }
+  .heroFrame { padding: 3rem 2rem; margin: 80px 1rem 0; min-height: auto; }
+  .fpWrap    { position: relative; right: auto; top: auto; transform: none; margin-top: 2rem; align-self: center; }
   .fpCanvas  { width: 260px; height: 260px; }
   .statsBar  { grid-template-columns: repeat(2, 1fr); margin: 0 1rem; }
   .statTile + .statTile { border-left: 1px solid var(--dark-border); }
@@ -359,6 +359,14 @@
 @media (max-width: 640px) {
   .heroFrame  { flex-direction: column; align-items: flex-start; padding: 2.5rem 1.25rem; }
   .fpWrap     { display: none; }
-  .statsBar   { grid-template-columns: 1fr 1fr; margin: 0 1rem; }
-  .ctaRow     { flex-wrap: wrap; }
+  .statsBar   { grid-template-columns: 1fr; margin: 0 1rem; }
+  .statTile:nth-child(2) { border-top: 1px solid var(--dark-border); }
+  .ctaRow     { flex-direction: column; align-items: stretch; gap: 0.75rem; }
+  .ctaPrimary, .ctaSecondary { justify-content: center; }
+  .title      { font-size: 2.5rem; }
+}
+
+@media (max-width: 480px) {
+  .heroFrame { margin: 64px 0 0; border-left: none; border-right: none; }
+  .statsBar { margin: 0; }
 }

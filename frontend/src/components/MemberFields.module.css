@@ -97,7 +97,10 @@
 }
 
 @media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+  .grid { grid-template-columns: 1fr; gap: 1rem; }
+  .memberHeader { margin-bottom: 1rem; }
+}
+
+@media (max-width: 480px) {
+  .memberLabel { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
 }

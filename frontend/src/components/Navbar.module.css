@@ -84,6 +84,14 @@
 }
 
 @media (max-width: 768px) {
+  .nav { padding: 0 1.25rem; }
   .links { display: none; }
-  .nav   { padding: 0 1.25rem; }
+  .logo { font-size: 1.15rem; }
+  .cta { padding: 0.45rem 1rem; font-size: 0.7rem; }
+}
+
+@media (max-width: 480px) {
+  .nav { height: 56px; }
+  .logo { font-size: 1rem; }
+  .cta { display: none; } /* Hide CTA on extremely small screens to save space if needed, or keep minimal */
 }

@@ -41,7 +41,6 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
-  cursor: none;
   /* Fine grid motif — subtle structural lines */
   background-image:
     linear-gradient(var(--grey-border) 1px, transparent 1px),
@@ -101,9 +100,17 @@ body.cursor-hover .cursor-dot {
   box-shadow: 0 0 14px var(--green), 0 0 28px var(--green-glow-strong);
 }
 
+@media (hover: none) {
+  .cursor-dot, .cursor-ring {
+    display: none;
+  }
+}
+
 /* Restore pointer on interactive elements */
-a, button, select, input, [role="button"] {
-  cursor: none;
+@media (hover: hover) {
+  a, button, select, input, [role="button"] {
+    cursor: none;
+  }
 }
 
 /* Scanline overlay */
