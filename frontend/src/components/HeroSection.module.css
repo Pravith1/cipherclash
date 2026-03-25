@@ -1,0 +1,364 @@
+/* ══════════════════════════════════════════
+   HERO FRAME — the big bordered card
+   Matches reference: outer 1px border box,
+   dark bg, content left / fingerprint right
+   ══════════════════════════════════════════ */
+.heroFrame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 80px 2rem 0;          /* below fixed navbar */
+  padding: 4rem 3.5rem;
+  min-height: calc(100vh - 80px - 2rem);
+  border: 1px solid var(--dark-border-box);
+  background: var(--dark);
+  overflow: hidden;
+}
+
+/* Corner accent brackets — whitish-grey */
+.heroFrame::before,
+.heroFrame::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  z-index: 3;
+}
+.heroFrame::before {
+  top: 12px; left: 12px;
+  border-top: 1px solid var(--grey-text);
+  border-left: 1px solid var(--grey-text);
+}
+.heroFrame::after {
+  bottom: 12px; right: 12px;
+  border-bottom: 1px solid var(--grey-text);
+  border-right: 1px solid var(--grey-text);
+}
+
+/* particle canvas fills the frame */
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* scan line */
+.scanLine {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,106,0.25), transparent);
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+
+/* ── Left content ── */
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 560px;
+  flex-shrink: 0;
+}
+
+/* Live badge */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--green);
+  letter-spacing: 0.08em;
+  border: 1px solid var(--green-muted);
+  padding: 0.38rem 0.9rem;
+  margin-bottom: 1.75rem;
+  background: var(--green-glow);
+  animation: fadeInUp 0.5s ease both;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: blink 1.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Main title */
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 0.6rem;
+  animation: flicker 6s infinite;
+}
+
+.accent {
+  color: var(--green);
+  text-shadow: 0 0 40px var(--green-glow-strong), 0 0 80px rgba(0,255,106,0.1);
+}
+
+/* Monospace subtitle */
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.22em;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.5s 0.15s ease both;
+}
+
+/* Description */
+.description {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 460px;
+  margin-bottom: 2.25rem;
+  animation: fadeInUp 0.5s 0.25s ease both;
+}
+
+/* ── Two CTA buttons — like "GET A DEMO" + "LEARN MORE" ── */
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.5s 0.35s ease both;
+}
+
+/* Filled green button */
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--black);
+  background: var(--green);
+  padding: 0.8rem 1.75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.18s, box-shadow 0.18s;
+  border: 1px solid var(--green);
+}
+
+.ctaPrimary:hover {
+  background: #00e85e;
+  box-shadow: 0 0 28px var(--green-glow-strong);
+}
+
+/* Outline button */
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-primary);
+  background: transparent;
+  padding: 0.8rem 1.75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid var(--dark-border-box);
+  transition: border-color 0.18s, color 0.18s;
+}
+
+.ctaSecondary:hover {
+  border-color: var(--green-dim);
+  color: var(--green);
+}
+
+/* ── Trusted / event strip at bottom of content ── */
+.trusted {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--grey-accent), var(--grey-mid));
+  border: 1px solid var(--grey-border);
+  border-left: 2px solid var(--grey-text);
+  padding: 0.75rem 1rem;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+  backdrop-filter: blur(4px);
+}
+
+.trustedLabel {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--grey-text);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.trustedItems {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.trustedItem {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: rgba(220, 235, 228, 0.75);
+  letter-spacing: 0.06em;
+}
+
+.trustedItemBold {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: rgba(240, 255, 245, 0.95);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 10px rgba(0, 255, 106, 0.25);
+}
+
+.trustedDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--grey-text);
+  flex-shrink: 0;
+}
+
+/* ── Right: Fingerprint canvas ── */
+.fpWrap {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle grid overlay behind fingerprint */
+.fpWrap::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background-image:
+    linear-gradient(rgba(200,220,210,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,220,210,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Outer glow ring around fingerprint */
+.fpWrap::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center,
+    transparent 55%,
+    rgba(0,255,106,0.04) 70%,
+    rgba(200,220,210,0.04) 85%,
+    transparent 100%
+  );
+  z-index: 0;
+}
+
+.fpCanvas {
+  position: relative;
+  z-index: 1;
+  width: min(46vw, 480px);
+  height: min(52vw, 545px);
+  opacity: 0.78;
+  animation: glitch 9s ease-in-out infinite;
+  filter: blur(0.3px);
+}
+
+/* ══════════════════════════════════════════
+   STATS BAR — four tiles, below the frame
+   ══════════════════════════════════════════ */
+.statsBar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 0 2rem;
+}
+
+.statTile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.6rem 2rem;
+  background: #0b1a10;
+  border: 1px solid var(--dark-border);
+  border-top: none;
+  overflow: hidden;
+}
+
+/* Top-left whitish-grey corner accent */
+.statTile::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 40%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--grey-text), transparent);
+  pointer-events: none;
+}
+
+.statTile + .statTile { border-left: none; }
+
+/* diagonal dot pattern in corner — matches reference green tiles */
+.statTile::after {
+  content: '';
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  width: 80px;
+  height: 80px;
+  background-image: radial-gradient(circle, rgba(0,255,106,0.18) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+}
+
+.statNum {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 0.80rem;
+  color: var(--text-secondary);
+  line-height: 1.35;
+  max-width: 160px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .heroFrame { padding: 3rem 2rem; margin: 80px 1rem 0; }
+  .fpWrap    { position: relative; right: auto; top: auto; transform: none; }
+  .fpCanvas  { width: 260px; height: 260px; }
+  .statsBar  { grid-template-columns: repeat(2, 1fr); margin: 0 1rem; }
+  .statTile + .statTile { border-left: 1px solid var(--dark-border); }
+  .statTile:nth-child(2) { border-left: none; }
+  .statTile:nth-child(3), .statTile:nth-child(4) { border-top: 1px solid var(--dark-border); }
+}
+
+@media (max-width: 640px) {
+  .heroFrame  { flex-direction: column; align-items: flex-start; padding: 2.5rem 1.25rem; }
+  .fpWrap     { display: none; }
+  .statsBar   { grid-template-columns: 1fr 1fr; margin: 0 1rem; }
+  .ctaRow     { flex-wrap: wrap; }
+}
