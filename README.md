@@ -97,9 +97,13 @@ npm install
 npm run dev
 ```
 
-Frontend runs at: `http://localhost:5173`
+Create frontend `.env`:
 
-The Vite dev server proxies `/api` → `http://localhost:5000` automatically.
+```env
+VITE_API_BASE_URL=https://cipherclash-j10x.onrender.com
+```
+
+Frontend runs at: `http://localhost:5173`
 
 ---
 

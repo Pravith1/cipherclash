@@ -7,10 +7,12 @@ const registrationRoutes = require("./routes/registration");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/cipherclash";
-
+app.get("/", (req, res) => {
+  res.json({ status: "CipherClash API running", timestamp: new Date() });
+});
 // Middleware
 app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:3000"],
+  origin: ["http://localhost:5173", "http://localhost:3000","https://cipherclash-zeta.vercel.app"],
   credentials: true,
 }));
 app.use(express.json());
@@ -20,9 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", registrationRoutes);
 
 // Health check
-app.get("/", (req, res) => {
-  res.json({ status: "CipherClash API running", timestamp: new Date() });
-});
+
 
 // Connect to MongoDB and start server
 const startServer = () => {
