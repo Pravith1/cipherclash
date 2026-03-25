@@ -1,6 +1,6 @@
 # CipherClash — Registration Portal
 
-A full-stack MERN registration portal for PSG Tech's cybersecurity event **CipherClash**, featuring a dark hacker aesthetic matching the DFX design reference.
+A registration portal for PSG Tech's cybersecurity event **CipherClash**.
 
 ---
 
