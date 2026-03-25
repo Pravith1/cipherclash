@@ -5,6 +5,7 @@ import styles from './RegistrationForm.module.css'
 
 const EMAIL_REGEX = /^[0-9]{2}[a-zA-Z]{1,2}[0-9]{3}@psgtech\.ac\.in$/
 const PHONE_REGEX = /^[6-9]\d{9}$/
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '')
 
 const DEPARTMENTS = [
   'Automobile Engineering',
@@ -135,7 +136,7 @@ export default function RegistrationForm({ onSuccess }) {
     }
 
     try {
-      const res = await axios.post('/api/register', payload)
+      const res = await axios.post(`${API_BASE_URL}/api/register`, payload)
       if (res.data.success) {
         onSuccess(res.data.data)
       }
